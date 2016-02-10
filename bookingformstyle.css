@@ -1,0 +1,60 @@
+.book_place {
+	height: 20em;
+    width: auto;
+    background: white;
+    margin: 0 auto; 
+    border: 0px solid #000000;
+    text-align: center; 
+	margin-right:auto;
+	margin-left:auto;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+#city_select {
+  width: 250px;
+  height: 60px;
+  color: #fff;
+  padding:10px 16px;
+  font: 18px arial,sans-serif;
+  background-color:#7db641;
+  font-size:18px;
+  line-height:1.33;
+  border-radius:6px;
+       }
+#city_select :hover {
+  background-color:#8db3ff;
+  color: black;
+}
+#city_select option:nth-child(odd) {
+            color:white;
+            background:#7db641;
+        }
+#city_select option:nth-child(even) {
+            color:white;
+            background:#7db641;
+        }
+		
+#sport_select {
+  width: 250px;
+  height: 60px;
+  color: #fff;
+  padding:10px 16px;
+  font: 18px arial,sans-serif;
+  background-color:#7db641;
+  font-size:18px;
+    line-height:1.33;
+  border-radius:6px;
+       }
+#sport_select :hover {
+  background-color:#8db3ff;
+  color: black;
+}
+#sport_select option:nth-child(odd) {
+            color:white;
+            background:#7db641;
+        }
+#sport_select option:nth-child(even) {
+            color:white;
+            background:#7db641;
+        }
