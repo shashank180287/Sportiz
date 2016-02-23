@@ -92,31 +92,60 @@
 				navigator.geolocation.getCurrentPosition(function (p) {
 					var myCenter=new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
 					
+					var locations = [
+						  ['<h4>Bondi Beach</h4>', -33.890542, 151.274856],
+						  ['<h4>Coogee Beach</h4>', -33.923036, 151.259052],
+						  ['<h4>Cronulla Beach</h4>', -34.028249, 151.157507],
+						  ['<h4>Manly Beach</h4>', -33.80010128657071, 151.28747820854187],
+						  ['<h4>Maroubra Beach</h4>', -33.950198, 151.259302]
+						];
+					
 					var marker;
 					function initialize()
 					{
 					var mapProp = {
-					  center:myCenter,
+					//center:myCenter,
+					  center:new google.maps.LatLng(-37.92, 151.25),
 					  zoom:15,
 					  mapTypeId:google.maps.MapTypeId.ROADMAP
 					  };
 					var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-					marker=new google.maps.Marker({
-					  position:myCenter,
-					 // icon:'themes/assets/images/nepali-momo.png',
-					  animation:google.maps.Animation.BOUNCE
+					
+					var markers = new Array();
+					
+					for (var i = 0; i < locations.length; i++) {  
+					  var marker = new google.maps.Marker({
+						position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+						map: map,
+						//icon: icons[iconCounter]
 					  });
+					markers.push(marker);
+var infowindow = new google.maps.InfoWindow();
+					  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+						return function() {
+						
+						  infowindow.setContent(locations[i][0]);
+						  infowindow.open(map, marker);
+						}
+					  })(marker, i));
+					  
+					}
+//					marker=new google.maps.Marker({
+//					  position:myCenter,
+					 // icon:'themes/assets/images/nepali-momo.png',
+//					  animation:google.maps.Animation.BOUNCE
+//					  });
 
-					marker.setMap(map);
+					//marker.setMap(map);
 
 					// Info open
-					var infowindow = new google.maps.InfoWindow({
-					  content:"Hello World!"
-					  });
+//					var infowindow = new google.maps.InfoWindow({
+//					  content:"Hello World!"
+//					  });
 
-					google.maps.event.addListener(marker, 'click', function() {
-					  infowindow.open(map,marker);
-					  });
+//					google.maps.event.addListener(marker, 'click', function() {
+//					  infowindow.open(map,marker);
+//					  });
 					}
 					google.maps.event.addDomListener(window, 'load', initialize);
 				}, function (error){
