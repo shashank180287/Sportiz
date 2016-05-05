@@ -1,0 +1,5 @@
+# Home.html
+
+<li><a href="#"><img src="img/marker.png" height="20px" width="20px"></>Selected City</a></li>
+
+to bring selected city in the menu
