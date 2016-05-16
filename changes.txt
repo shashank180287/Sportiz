@@ -79,3 +79,86 @@ function CenterControl(controlDiv, map) {
 	  });
 
 	}
+
+
+// For changing the city
+function changeCity(selectedCity) {
+	document.getElementById("selectedCity").textContent = selectedCity;
+	if ("Mumbai" == selectedCity) {
+		drawMapWithMarkers(19.024505, 73.025918);
+	}
+
+	else if ("Bengaluru" == selectedCity) {
+		drawMapWithMarkers(12.978941, 77.599816);
+	}
+}
+
+function drawMapWithMarkers(latitude, longitude) {
+	var siteUrl = "http://localhost:8080/sprotiz/";
+
+	var myCenter = new google.maps.LatLng(latitude, longitude);
+
+	var geocoder = new google.maps.Geocoder();
+	$
+			.get(
+					siteUrl + "activity",
+					function(locations) {
+						var temp = JSON.parse(locations);
+						var marker;
+						var mapProp = {
+								center : myCenter,
+								zoom : 15,
+								mapTypeId : google.maps.MapTypeId.ROADMAP
+							};
+							var map = new google.maps.Map(document
+									.getElementById("googleMap"), mapProp);
+							var markers = new Array();
+							for (var i = 0; i < temp.length; i++) {
+								var marker = new google.maps.Marker({
+									position : new google.maps.LatLng(
+											temp[i][1], temp[i][2]),
+									map : map,
+								});
+								markers.push(marker);
+								var infowindow = new google.maps.InfoWindow();
+								google.maps.event
+										.addListener(
+												marker,
+												'click',
+												(function(marker, i) {
+													return function() {
+
+														infowindow
+																.setContent(temp[i][0]);
+														infowindow.open(map,
+																marker);
+													}
+												})(marker, i));
+
+							}
+							var centerControlDiv = document
+									.createElement('div');
+							var centerControl = new CenterControl(
+									centerControlDiv, map);
+							centerControlDiv.index = 1;
+							map.controls[google.maps.ControlPosition.RIGHT_BOTTOM]
+									.push(centerControlDiv);
+
+							event.preventDefault();
+					});
+
+}
+
+
+
+In home.html:
+
+replace select city li with :
+<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown"><img src="img/marker.png"
+									height="20px" width="20px" /><span id="selectedCity">Selected
+										City</span></a>
+								<ul id="cityList" class="dropdown-menu">
+									<li><a href="javascript:changeCity('Bengaluru');">Bangalore</a></li>
+									<li><a href="javascript:changeCity('Mumbai');">Mumbai</a></li>
+								</ul></li>
