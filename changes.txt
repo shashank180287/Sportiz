@@ -1,164 +1,23 @@
-# request_map.js
-
-Add these lines after for loop:
-var centerControlDiv = document.createElement('div');
-												  var centerControl = new CenterControl(centerControlDiv, map);
-
-												  centerControlDiv.index = 1;
-												  map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
-
-
-Add these lines in the end:
-
-function CenterControl(controlDiv, map) {
-	var chicago = {lat: 41.85, lng: -87.65};
-	  // Set CSS for the control border.
-	  var controlUI = document.createElement('div');
-	  controlUI.style.backgroundColor = '#fff';
-	  controlUI.style.border = '2px solid #fff';
-	  controlUI.style.borderRadius = '3px';
-	  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-	  controlUI.style.cursor = 'pointer';
-	  controlUI.style.marginBottom = '22px';
-	  controlUI.style.textAlign = 'center';
-	  controlUI.title = 'Click to recenter the map';
-	  controlDiv.appendChild(controlUI);
-
-	  // Set CSS for the control interior.
-	  var controlText = document.createElement('div');
-/*	  controlText.style.color = 'rgb(25,25,25)';
-	  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-	  controlText.style.fontSize = '16px';
-	  controlText.style.lineHeight = '38px';
-	  controlText.style.paddingLeft = '5px';
-	  controlText.style.paddingRight = '5px';
-	  controlText.innerHTML = 'Request Map';
-	  
-	  controlText.style.width = '200px';
-	  controlText.style.height = '40px';
-	  controlText.style.textalign = 'center';
-	  controlText.style.lineheight = '40px';
-	  controlText.style.borderradius ='7px';
-	  controlText.style.backgroundimage ='-webkit-linear-gradient(top,#FFF 0%,#91BDD6 100%)';
-	  controlText.style.backgroundimage ='-moz-linear-gradient(top, #FFFFFF 0%, #91BDD6 100%)';
-	  controlText.style.backgroundimage = '-ms-linear-gradient(top,#FFF,#91BDD6)';
-	  controlText.style.backgroundimage = '-o-linear-gradient(top,#FFF,#91BDD6)';
-	  controlText.style.backgroundimage = 'linear-gradient(top,#FFF,#91BDD6)';
-	  controlText.style.border = 'solid #91BDD6 5px';
-	  controlText.style.boxshadow = '0px 0px 0px 5px #fff, 5px 3px 12px #000000';*/
-	  
-	  controlText.innerHTML = 'Request >>';
-	  controlText.style.display = 'block';
-	  controlText.style.height = '58px';
-	  controlText.style.width = '150px';
-	  controlText.style.background = '#34696f';
-	  controlText.style.border = '2px solid rgba(33, 68, 72, 0.59)';
-	  controlText.style.color = 'rgba(0, 0, 0, 0.55)';
-	  controlText.style.textalign = 'center';
-	  controlText.style.font = 'bold 1.8em/50px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif';
-	  controlText.style.background = '-webkit-linear-gradient(top, #34696f, #2f5f63)';
-	  controlText.style.background = '-moz-linear-gradient(top, #34696f, #2f5f63)';
-	  controlText.style.background = '-o-linear-gradient(top, #34696f, #2f5f63)';
-	  controlText.style.background = '-ms-linear-gradient(top, #34696f, #2f5f63)';
-	  controlText.style.background = 'linear-gradient(top, #34696f, #2f5f63)';
-	  controlText.style.webkitborderradius = '50px';
-	  controlText.style.khtmlborderradius = '50px';
-	  controlText.style.mozborderradius = '50px';
-	  controlText.style.borderradius = '50px';
-	  controlText.style.webkitboxshadow = '0 8px 0 #1b383b';
-	  controlText.style.mozboxshadow = '0 8px 0 #1b383b';
-	  controlText.style.boxshadow = '0 8px 0 #1b383b';
-	  controlText.style.textshadow = '0 2px 2px rgba(255, 255, 255, 0.2)';
-	  
-	  controlUI.appendChild(controlText);
-
-  
-	  // Setup the click event listeners: simply set the map to Chicago.
-	  controlUI.addEventListener('click', function() {
-	    map.setCenter(chicago);
-	  });
-
-	}
-
-
-// For changing the city
-function changeCity(selectedCity) {
-	document.getElementById("selectedCity").textContent = selectedCity;
-	if ("Mumbai" == selectedCity) {
-		drawMapWithMarkers(19.024505, 73.025918);
-	}
-
-	else if ("Bengaluru" == selectedCity) {
-		drawMapWithMarkers(12.978941, 77.599816);
-	}
-}
-
-function drawMapWithMarkers(latitude, longitude) {
-	var siteUrl = "http://localhost:8080/sprotiz/";
-
-	var myCenter = new google.maps.LatLng(latitude, longitude);
-
-	var geocoder = new google.maps.Geocoder();
-	$
-			.get(
-					siteUrl + "activity",
-					function(locations) {
-						var temp = JSON.parse(locations);
-						var marker;
-						var mapProp = {
-								center : myCenter,
-								zoom : 15,
-								mapTypeId : google.maps.MapTypeId.ROADMAP
-							};
-							var map = new google.maps.Map(document
-									.getElementById("googleMap"), mapProp);
-							var markers = new Array();
-							for (var i = 0; i < temp.length; i++) {
-								var marker = new google.maps.Marker({
-									position : new google.maps.LatLng(
-											temp[i][1], temp[i][2]),
-									map : map,
-								});
-								markers.push(marker);
-								var infowindow = new google.maps.InfoWindow();
-								google.maps.event
-										.addListener(
-												marker,
-												'click',
-												(function(marker, i) {
-													return function() {
-
-														infowindow
-																.setContent(temp[i][0]);
-														infowindow.open(map,
-																marker);
-													}
-												})(marker, i));
-
-							}
-							var centerControlDiv = document
-									.createElement('div');
-							var centerControl = new CenterControl(
-									centerControlDiv, map);
-							centerControlDiv.index = 1;
-							map.controls[google.maps.ControlPosition.RIGHT_BOTTOM]
-									.push(centerControlDiv);
-
-							event.preventDefault();
-					});
-
-}
-
-
-
-In home.html:
-
-replace select city li with :
-<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"><img src="img/marker.png"
-									height="20px" width="20px" /><span id="selectedCity">Selected
-										City</span></a>
-								<ul id="cityList" class="dropdown-menu">
-									<li><a href="javascript:changeCity('Bengaluru');">Bangalore</a></li>
-									<li><a href="javascript:changeCity('Mumbai');">Mumbai</a></li>
-								</ul></li>
+Add in index.html
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown"><a class="dropdown-toggle" href="#"
+								data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>Register/Login<strong class="caret"></strong></a>
+								<div class="dropdown-menu"
+									style="padding: 15px; padding-bottom: 0px;">
+									<form method="post" action="login" accept-charset="UTF-8">
+										<input style="margin-bottom: 15px;" type="text"
+											placeholder="Username" id="username" name="username">
+										<input style="margin-bottom: 15px;" type="password"
+											placeholder="Password" id="password" name="password">
+										<input style="float: left; margin-right: 10px;"
+											type="checkbox" name="remember-me" id="remember-me" value="1">
+										<label class="string optional" for="user_remember_me">
+											Remember me</label> <input class="btn btn-primary btn-block"
+											type="submit" id="sign-in" value="Sign In"> <label
+											style="text-align: center; margin-top: 5px">or</label> <input
+											class="btn btn-primary btn-block" type="button"
+											id="sign-up" value="Signup">
+									</form>
+								</div></li>
+							<li style="visibility: hidden">hiddenoption</li>
+						</ul>
