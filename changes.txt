@@ -21,3 +21,21 @@ Add in index.html
 								</div></li>
 							<li style="visibility: hidden">hiddenoption</li>
 						</ul>
+
+
+
+
+	<div class="mainTitle">
+		<div class="container">
+			<h1>You Play We Book</h1>
+		</div>
+		<div id="search-input" style="width: 60%; margin: 0 auto;">
+			<div class="input-group col-md-12">
+				<input type="text" class="form-control input-lg"
+					placeholder="Sport/Location/Facility" /> <span class="input-group-btn">
+					<button class="btn btn-info btn-lg" type="button">
+						<i class="glyphicon glyphicon-search"></i>
+					</button>
+				</span>
+			</div>
+		</div>
