@@ -27,3 +27,11 @@ AWS Course:
 * Even you enable everyone read for bucket, for each object you need to enable it.
 * While designing system for most cost effective ways with very large files, we might want versioning disable as if file is of 4GB and we change this slightly, total storage in S3 will be 8GB for single file.
 * If you delete version, it cannot be restored but if you delete any object in S3, it can be restored by removing the marker of delete operation from old view if versioning is enabled.
+* For cross region replication, versioning should be enabled in both buckets and same region replication is not allowed.
+*While enabling cross region replication, only new object replicate. Exsisting elements will not. But if you update an existing object, it will replicate all previous version also in destination bucket. Even permission are replicated.
+* You cant replicate to two different buckets as well as A->B->C. The object will be replicate in C, only if, object are written to B manually.
+* If you delete any element from bucket, deletion will be replicated to other bucket. But if you delete "Delete Marker", your object will be restored in main bucket but will not in replicated bucket. The same is valid for version also. If you remove any version from main bucket, you can still restored that version from destination bucket.
+*
+
+
+*
