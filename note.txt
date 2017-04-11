@@ -34,12 +34,15 @@ AWS Course:
 * For S3 Lifecycle management, if you select "Action on current version" and delete, it will put a delete marker but if you select "Action on previous version" and select delete. It will delete object permanently.
 * Glacier is designed to keep object 90 days minimum. So  even if object is deleted before, 90 days charge will be applicable.
 * Lifecycle can be done with versioning on/off 
-* To move object in IA, it needs to be 128Kb in size and 30 days old
+* To move object in IA, it needs to be 128Kb in size and 30 days old. But if you dont enable archiving to S3-IA, you can move object to Glacier next day you upload to S3.
+* By default TTL is 24 hours in edge locations.
 * RTMP distribution speeds up the distribution of your streaming media files using Adobe Flash Media Server's RTMP protocol.
 * A single distribution allows to have different origin which can be distinguish with origin id.
 * Smooth Stream service is used to Microsoft Smooth Stream APIs.
 * Restrict Viewer Access (Use Signed URLs or Signed Cookies) allowed your content to be viewed by specific group of users.
-*
-
-
-*
+* There are two types of encryption : 1) In-transit i.e. while upload/download from the S3 to local which is managed by SSL/TSL 2) At Rest where we have Server side encryption in 3 different flavour: 1) S3 Managed Key SSE-S3 where S3 managed key as well as master key to encrypt keys with ASC 256. 2) Key Managed Service, SSE-KMS where keys are protected with envelop keys genarated uniquely for region as well as we get order trail of S3 bucket decryption usage. 3) Customer Provided key SSE-C where keys are provided by user.
+* Storage Gateway is the service to connect an on-premises software appliance with cloud-based storage. It comes as VM image. There are 4 types of G/w : 1) File Gateway to store flat files. 2) Volumes G/W is used to stored block based storage like install s/w's. These can be two type : 1) Stored Volumes (G/w stored volumes) to store copy of entire dataset 2) Cached Volumes (G/w cached volumes) to store most recent access data. 3) Tape G/w (G/w virtual tape library) to store archieve data in virtual tapes.
+* AWS Import/export was used to transfer data to AWS with physical disk but problem was there were a number of disk type so AWS comes with Snowball. These can be used to import/export data from S3 so if you want to transfer data from Glacier. It has to be transferred first to S3.
+*S3  Transfer Acceleration utilies Edge n/w to faster data upload to S3 with new URL: <bucket>.s3-accelerate.amazonaws.com 
+* When you enable Static Website hosting url looks like : http://<bucket-name>.s3-website-<region>.amazonaws.com
+* S3 can be configured to log every request to S3 in other bucket. ndividual Amazon S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 terabytes. The largest object that can be uploaded in a single PUT is 5 gigabytes. For objects larger than 100 megabytes, customers should consider using the Multipart Upload capability.
