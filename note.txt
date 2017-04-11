@@ -31,6 +31,14 @@ AWS Course:
 *While enabling cross region replication, only new object replicate. Exsisting elements will not. But if you update an existing object, it will replicate all previous version also in destination bucket. Even permission are replicated.
 * You cant replicate to two different buckets as well as A->B->C. The object will be replicate in C, only if, object are written to B manually.
 * If you delete any element from bucket, deletion will be replicated to other bucket. But if you delete "Delete Marker", your object will be restored in main bucket but will not in replicated bucket. The same is valid for version also. If you remove any version from main bucket, you can still restored that version from destination bucket.
+* For S3 Lifecycle management, if you select "Action on current version" and delete, it will put a delete marker but if you select "Action on previous version" and select delete. It will delete object permanently.
+* Glacier is designed to keep object 90 days minimum. So  even if object is deleted before, 90 days charge will be applicable.
+* Lifecycle can be done with versioning on/off 
+* To move object in IA, it needs to be 128Kb in size and 30 days old
+* RTMP distribution speeds up the distribution of your streaming media files using Adobe Flash Media Server's RTMP protocol.
+* A single distribution allows to have different origin which can be distinguish with origin id.
+* Smooth Stream service is used to Microsoft Smooth Stream APIs.
+* Restrict Viewer Access (Use Signed URLs or Signed Cookies) allowed your content to be viewed by specific group of users.
 *
 
 
