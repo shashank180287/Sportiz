@@ -49,10 +49,14 @@ AWS Course:
 * Amazon EBS volumes are placed in specific availability zones where they are automatically replicate to protect you from failure.
 * If you need more than 10K IOPS(I/O operations per second), Provisioned IOPS SSD (IO1) is better than General Purpose SSD (GP2) which support 3 IOPS per GB with upto 10000 IOPS.
 * HDD EBS disk can be used for processing sequecial data.
-* You cannot mount one EBS with multiple EC2 instances, instead use EFS.
+* You cannot mount one EBS with multiple EC2 instances, instead use EFS as well as you cannot mount EBS from different availability zone into EC2 instance from other zone.
 * One subnet is assigned to one availability zone only.
 * By default, If you terminate the EC2 instance, boot volume memory will be deleted and one vpc n/w is created as soon as login is created.
 * To login into putty use ec2-user@<ip address> as address while public DNS for EC2 instance look like ec2-<IP seperated by - in place of .>.<region>.compute.amazonaws.com
 * System status check verifies that your instance is reachable. We test that we are able to get network packets to your instance. If this check fails, there may be an issue with the infrastructure hosting your instance (such as AWS power, networking or software systems). This check does not validate that your operating system and applications are accepting traffic. Instance status check verifies that your instance's operating system is accepting traffic. If this check fails, you may need to reboot your instance or make modifications to your operating system configuration.
 * One EC instances can have multiple security group.
 * Any rule change apply to security applies immediately and if you allows any port in inbound, that port will be allowed for outbound by default.
+* Snapshots are copy of harddisk as given point to time. Its stored in S3.Every time you take a snapshot of a Volume, only increamental changes will be stored in S3. While recreating Volume from snapshot, you can change the type of Volume.
+* RAID are collection of disk which can be worked as single Volume. This can be used when highest disk space available is not enough for your case. RAID 5 is collection if 3 or more volumes.
+*
+*
