@@ -58,5 +58,8 @@ AWS Course:
 * Any rule change apply to security applies immediately and if you allows any port in inbound, that port will be allowed for outbound by default.
 * Snapshots are copy of harddisk as given point to time. Its stored in S3.Every time you take a snapshot of a Volume, only increamental changes will be stored in S3. While recreating Volume from snapshot, you can change the type of Volume.
 * RAID are collection of disk which can be worked as single Volume. This can be used when highest disk space available is not enough for your case. RAID 5 is collection if 3 or more volumes.
-*
+* There are two type of load balancer: 1) Application Load Balancer are preferred over classic load balancer.
+* Response time is time wait in receiving response, it can be 2-60 sec. Interval is time b/w 2 check, it can be 5-300sec. Unhealthy threshold, no of consecutive failure before declaring EC2 instance unhealthy.
+* AWS does not generate public IP address for load balancer unlike for EC2 instance. It only genarates DNS for ELB.
+* By default, CPU, Disk Read/Write, N/W and Status check(both for instance as well as for hosting machine) metrics are availbale.
 *
