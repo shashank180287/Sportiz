@@ -63,3 +63,9 @@ AWS Course:
 * AWS does not generate public IP address for load balancer unlike for EC2 instance. It only genarates DNS for ELB.
 * By default, CPU, Disk Read/Write, N/W and Status check(both for instance as well as for hosting machine) metrics are availbale.
 *
+===============================================================================================
+* To access RDS from web application, RDS security group should have inbound from web application security group.
+* Restored version from Automatic Backup or manual snapshot, will be new RDS instances with a new end point.
+* To scale up the RDS database, take snapshot and while restore specify storage type.
+* Multi AZ is only for disaster recovery only. Its not primarily used for improving performance. For performance improvement you need Read Replicas.
+* Read replica support 5 replica for one database. Read replica is supported for Postgres, MySQL and MariaDB
