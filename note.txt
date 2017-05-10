@@ -69,3 +69,7 @@ AWS Course:
 * To scale up the RDS database, take snapshot and while restore specify storage type.
 * Multi AZ is only for disaster recovery only. Its not primarily used for improving performance. For performance improvement you need Read Replicas.
 * Read replica support 5 replica for one database. Read replica is supported for Postgres, MySQL and MariaDB
+* When you create VPC, it creates N/w ACLs, securoty group and Route Tables by default.
+* 1 subnet can be attached to one Availability Zone only. It can not be spanned to multiple AZ.
+* Security groups are stateful so if you allow http inbound traffic, by default outbound traffic on http is also open, while Network Access List are stateless.
+* 
