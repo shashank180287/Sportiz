@@ -72,4 +72,13 @@ AWS Course:
 * When you create VPC, it creates N/w ACLs, securoty group and Route Tables by default.
 * 1 subnet can be attached to one Availability Zone only. It can not be spanned to multiple AZ.
 * Security groups are stateful so if you allow http inbound traffic, by default outbound traffic on http is also open, while Network Access List are stateless.
-* 
+* By default AWS reserves 251 IPs for any new subnet. AWS reserves 5 IP addresses for their operation: 1) 10.0.0.0: N/W address, 2) 10.0.0.1 : Reserved for VPC router, 3) 10.0.0.2 : Reserved for DNS IP address, as its base of VPC network range plus 2, 4) 10.0.0.3 : Reserved for future use, 5) 10.0.0.255: N/W broadcast address, VPC does not support broadcast.
+* You cannot attach multiple Internet gateway to VPC.
+* AWS provided Elastic IPs which can be associated with any EC2 instances.
+* DynmoDB : How to scale up
+* Elastic Cache supports Master/Slave replication and Multi AZ which can be used to achieve cross AZ redundancy.
+* Elastic cache is a good choice if your database is read heavy and not prone to frequent changes while Redshift is useful if database is feeling stress because of heavy OLAP transaction on it.
+* Aurora provides uoto 5 time better performance than MySQL at a price point one tenth of a commecial databases.
+* If you loose primary db server, with Aurora Replicas(15), it will do the failover but with MySQL Read Replicas(5), it will not.
+* DB Instance with Priority tier 0 becomes master copy. Primary DB instance is always accessed by cluster DNS while other can be accessed by instance DNS address.
+Aurora Replica
