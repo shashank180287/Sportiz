@@ -84,10 +84,12 @@ AWS Course:
 Aurora Replica
 ============
 Private Subnet and ping it from public and see internet is not working
-NAT instances
+NAT instances and NAT G/W
+N/W ACL based on access public subnet 
 * NAT G/W and NAT Instance can be used to provide access to private subnet securely. NAT G/W is new and autoscalble as well no need to define secutiy group.
 * For NAT instance, we should disable source destination check.
 * N/W ACL created with VPC by default allows all inbound outbound traffic while if you create any custome N/w ACL, inbound-outbound traffic is denied.
-* One Subnet can be attached to one AZ as well as one N/w ACL only.
-* 
+* One Subnet can be attached to one AZ as well as one N/w ACL only. So if you add one subnet to any ACL, it will be removed from N/W ACL which was created with VPN.
+* Even if you create inbound and outbound rule, you cannot access public subnet until you open the Ephemeral Ports on 1024-65535.
+* N/W ACL rules are executed in order. They are not overrides. And to block any IP Addresses , we can use N/W ACL's not Security Group.
 * 
