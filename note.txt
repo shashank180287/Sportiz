@@ -92,4 +92,5 @@ N/W ACL based on access public subnet
 * One Subnet can be attached to one AZ as well as one N/w ACL only. So if you add one subnet to any ACL, it will be removed from N/W ACL which was created with VPN.
 * Even if you create inbound and outbound rule, you cannot access public subnet until you open the Ephemeral Ports on 1024-65535.
 * N/W ACL rules are executed in order. They are not overrides. And to block any IP Addresses , we can use N/W ACL's not Security Group.
+* To create high available system, we should have 2 publicly available subnet in 2 different AZ.
 * 
