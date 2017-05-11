@@ -82,3 +82,12 @@ AWS Course:
 * If you loose primary db server, with Aurora Replicas(15), it will do the failover but with MySQL Read Replicas(5), it will not.
 * DB Instance with Priority tier 0 becomes master copy. Primary DB instance is always accessed by cluster DNS while other can be accessed by instance DNS address.
 Aurora Replica
+============
+Private Subnet and ping it from public and see internet is not working
+NAT instances
+* NAT G/W and NAT Instance can be used to provide access to private subnet securely. NAT G/W is new and autoscalble as well no need to define secutiy group.
+* For NAT instance, we should disable source destination check.
+* N/W ACL created with VPC by default allows all inbound outbound traffic while if you create any custome N/w ACL, inbound-outbound traffic is denied.
+* One Subnet can be attached to one AZ as well as one N/w ACL only.
+* 
+* 
