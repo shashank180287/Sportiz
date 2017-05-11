@@ -18,79 +18,9 @@ https://portal.aws.amazon.com/billing/signup?state=hashArgs%23%2Fpaymentinformat
 
 
 AWS Course:
-* By default, all the buckets and object in S3 are privately access until you provide access.
-* In practical, S3 name does not have region name.
-* S3 provide AES-256 server side encryption where data will be encrypted before storing in S3.
-* In S3, there are two type of permission management, 1) Manage User for users present in IAM 2) Manage Public permission for AWS users or public.
-* In S3, there are two type of access granted: 1) Objects which allows to create/modify/delete objects in bucket 2) Object Permission which allows to grant permissions of create/modify/delete to other users also.
-* Once versioning is enabled in S3, it cannot be removed unless you delete the bucket though it can be disabled.
-* Even you enable everyone read for bucket, for each object you need to enable it.
-* While designing system for most cost effective ways with very large files, we might want versioning disable as if file is of 4GB and we change this slightly, total storage in S3 will be 8GB for single file.
-* If you delete version, it cannot be restored but if you delete any object in S3, it can be restored by removing the marker of delete operation from old view if versioning is enabled.
-* For cross region replication, versioning should be enabled in both buckets and same region replication is not allowed.
-*While enabling cross region replication, only new object replicate. Exsisting elements will not. But if you update an existing object, it will replicate all previous version also in destination bucket. Even permission are replicated.
-* You cant replicate to two different buckets as well as A->B->C. The object will be replicate in C, only if, object are written to B manually.
-* If you delete any element from bucket, deletion will be replicated to other bucket. But if you delete "Delete Marker", your object will be restored in main bucket but will not in replicated bucket. The same is valid for version also. If you remove any version from main bucket, you can still restored that version from destination bucket.
-* For S3 Lifecycle management, if you select "Action on current version" and delete, it will put a delete marker but if you select "Action on previous version" and select delete. It will delete object permanently.
-* Glacier is designed to keep object 90 days minimum. So  even if object is deleted before, 90 days charge will be applicable.
-* Lifecycle can be done with versioning on/off 
-* To move object in IA, it needs to be 128Kb in size and 30 days old. But if you dont enable archiving to S3-IA, you can move object to Glacier next day you upload to S3.
-* By default TTL is 24 hours in edge locations.
-* RTMP distribution speeds up the distribution of your streaming media files using Adobe Flash Media Server's RTMP protocol.
-* A single distribution allows to have different origin which can be distinguish with origin id.
-* Smooth Stream service is used to Microsoft Smooth Stream APIs.
-* Restrict Viewer Access (Use Signed URLs or Signed Cookies) allowed your content to be viewed by specific group of users.
-* There are two types of encryption : 1) In-transit i.e. while upload/download from the S3 to local which is managed by SSL/TSL 2) At Rest where we have Server side encryption in 3 different flavour: 1) S3 Managed Key SSE-S3 where S3 managed key as well as master key to encrypt keys with ASC 256. 2) Key Managed Service, SSE-KMS where keys are protected with envelop keys genarated uniquely for region as well as we get order trail of S3 bucket decryption usage. 3) Customer Provided key SSE-C where keys are provided by user.
-* Storage Gateway is the service to connect an on-premises software appliance with cloud-based storage. It comes as VM image. There are 4 types of G/w : 1) File Gateway to store flat files. 2) Volumes G/W is used to stored block based storage like install s/w's. These can be two type : 1) Stored Volumes (G/w stored volumes) to store copy of entire dataset 2) Cached Volumes (G/w cached volumes) to store most recent access data. 3) Tape G/w (G/w virtual tape library) to store archieve data in virtual tapes.
-* AWS Import/export was used to transfer data to AWS with physical disk but problem, was there were a number of disk type so AWS comes with Snowball. These can be used to import/export data from S3 so if you want to transfer data from Glacier. It has to be transferred first to S3.
-*S3  Transfer Acceleration utilies Edge n/w to faster data upload to S3 with new URL: <bucket>.s3-accelerate.amazonaws.com 
-* When you enable Static Website hosting url looks like : http://<bucket-name>.s3-website-<region>.amazonaws.com
-* S3 can be configured to log every request to S3 in other bucket. ndividual Amazon S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 terabytes. The largest object that can be uploaded in a single PUT is 5 gigabytes. For objects larger than 100 megabytes, customers should consider using the Multipart Upload capability.
-* Amazon EBS volumes are placed in specific availability zones where they are automatically replicate to protect you from failure.
-* If you need more than 10K IOPS(I/O operations per second), Provisioned IOPS SSD (IO1) is better than General Purpose SSD (GP2) which support 3 IOPS per GB with upto 10000 IOPS.
-* HDD EBS disk can be used for processing sequecial data.
-* You cannot mount one EBS with multiple EC2 instances, instead use EFS as well as you cannot mount EBS from different availability zone into EC2 instance from other zone.
-* One subnet is assigned to one availability zone only.
-* By default, If you terminate the EC2 instance, boot volume memory will be deleted and one vpc n/w is created as soon as login is created.
-* To login into putty use ec2-user@<ip address> as address while public DNS for EC2 instance look like ec2-<IP seperated by - in place of .>.<region>.compute.amazonaws.com
-* System status check verifies that your instance is reachable. We test that we are able to get network packets to your instance. If this check fails, there may be an issue with the infrastructure hosting your instance (such as AWS power, networking or software systems). This check does not validate that your operating system and applications are accepting traffic. Instance status check verifies that your instance's operating system is accepting traffic. If this check fails, you may need to reboot your instance or make modifications to your operating system configuration.
-* One EC instances can have multiple security group.
-* Any rule change apply to security applies immediately and if you allows any port in inbound, that port will be allowed for outbound by default.
-* Snapshots are copy of harddisk as given point to time. Its stored in S3.Every time you take a snapshot of a Volume, only increamental changes will be stored in S3. While recreating Volume from snapshot, you can change the type of Volume.
-* RAID are collection of disk which can be worked as single Volume. This can be used when highest disk space available is not enough for your case. RAID 5 is collection if 3 or more volumes.
-* There are two type of load balancer: 1) Application Load Balancer are preferred over classic load balancer.
-* Response time is time wait in receiving response, it can be 2-60 sec. Interval is time b/w 2 check, it can be 5-300sec. Unhealthy threshold, no of consecutive failure before declaring EC2 instance unhealthy.
-* AWS does not generate public IP address for load balancer unlike for EC2 instance. It only genarates DNS for ELB.
-* By default, CPU, Disk Read/Write, N/W and Status check(both for instance as well as for hosting machine) metrics are availbale.
 *
-===============================================================================================
-* To access RDS from web application, RDS security group should have inbound from web application security group.
-* Restored version from Automatic Backup or manual snapshot, will be new RDS instances with a new end point.
-* To scale up the RDS database, take snapshot and while restore specify storage type.
-* Multi AZ is only for disaster recovery only. Its not primarily used for improving performance. For performance improvement you need Read Replicas.
-* Read replica support 5 replica for one database. Read replica is supported for Postgres, MySQL and MariaDB
-* When you create VPC, it creates N/w ACLs, securoty group and Route Tables by default.
-* 1 subnet can be attached to one Availability Zone only. It can not be spanned to multiple AZ.
-* Security groups are stateful so if you allow http inbound traffic, by default outbound traffic on http is also open, while Network Access List are stateless.
-* By default AWS reserves 251 IPs for any new subnet. AWS reserves 5 IP addresses for their operation: 1) 10.0.0.0: N/W address, 2) 10.0.0.1 : Reserved for VPC router, 3) 10.0.0.2 : Reserved for DNS IP address, as its base of VPC network range plus 2, 4) 10.0.0.3 : Reserved for future use, 5) 10.0.0.255: N/W broadcast address, VPC does not support broadcast.
-* You cannot attach multiple Internet gateway to VPC.
-* AWS provided Elastic IPs which can be associated with any EC2 instances.
-* DynmoDB : How to scale up
-* Elastic Cache supports Master/Slave replication and Multi AZ which can be used to achieve cross AZ redundancy.
-* Elastic cache is a good choice if your database is read heavy and not prone to frequent changes while Redshift is useful if database is feeling stress because of heavy OLAP transaction on it.
-* Aurora provides uoto 5 time better performance than MySQL at a price point one tenth of a commecial databases.
-* If you loose primary db server, with Aurora Replicas(15), it will do the failover but with MySQL Read Replicas(5), it will not.
-* DB Instance with Priority tier 0 becomes master copy. Primary DB instance is always accessed by cluster DNS while other can be accessed by instance DNS address.
-Aurora Replica
-============
+
 Private Subnet and ping it from public and see internet is not working
 NAT instances and NAT G/W
 N/W ACL based on access public subnet 
-* NAT G/W and NAT Instance can be used to provide access to private subnet securely. NAT G/W is new and autoscalble as well no need to define secutiy group.
-* For NAT instance, we should disable source destination check.
-* N/W ACL created with VPC by default allows all inbound outbound traffic while if you create any custome N/w ACL, inbound-outbound traffic is denied.
-* One Subnet can be attached to one AZ as well as one N/w ACL only. So if you add one subnet to any ACL, it will be removed from N/W ACL which was created with VPN.
-* Even if you create inbound and outbound rule, you cannot access public subnet until you open the Ephemeral Ports on 1024-65535.
-* N/W ACL rules are executed in order. They are not overrides. And to block any IP Addresses , we can use N/W ACL's not Security Group.
-* To create high available system, we should have 2 publicly available subnet in 2 different AZ.
-* 
+
