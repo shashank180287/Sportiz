@@ -18,9 +18,7 @@ https://portal.aws.amazon.com/billing/signup?state=hashArgs%23%2Fpaymentinformat
 
 
 AWS Course:
-*
-
-Private Subnet and ping it from public and see internet is not working
-NAT instances and NAT G/W
-N/W ACL based on access public subnet 
+=SNS Labs
+* Simple Notification Service SNS can be used for notification of scaling of a new EC2 instance.
+* 
 
