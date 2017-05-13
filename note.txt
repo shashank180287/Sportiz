@@ -18,7 +18,5 @@ https://portal.aws.amazon.com/billing/signup?state=hashArgs%23%2Fpaymentinformat
 
 
 AWS Course:
-=SNS Labs
-* Simple Notification Service SNS can be used for notification of scaling of a new EC2 instance.
 * 
 
