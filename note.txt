@@ -18,6 +18,4 @@ https://portal.aws.amazon.com/billing/signup?state=hashArgs%23%2Fpaymentinformat
 
 
 AWS Course:
-* Lab for uploading content to wordpress site and sync with s3, create AMI and launch new instance.
-* Auto scaling and stress
 
