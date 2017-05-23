@@ -18,11 +18,33 @@ https://portal.aws.amazon.com/billing/signup?state=hashArgs%23%2Fpaymentinformat
 
 
 AWS Course:
+
+Snip lecture 66 @ 5:08
+Take table from http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-comparison.html
+
 Elastic Cache supports Master/Slave replication and Multi AZ which can be used to achieve cross AZ redundancy.
 Elastic cache is a good choice if your database is read heavy and not prone to frequent changes while Redshift is useful if database is feeling stress because of heavy OLAP transaction on it.
 Aurora provides uoto 5 time better performance than MySQL at a price point one tenth of a commecial databases. Aurora database starts with 10 Gb storage, scale in 10Gb increments up to 64 Tb. Compute resources can scale up to 32vCPUs and 244Gb of memory.
 Aurora keeps 2 copies of your data in each AZ with minimum of 3 AZ. So total 6 copies of data with handling loss of up to 2 copies of data without affecting write availability and loss of 3 copies of data without affecting read availability. Its self healing. 
 If you are using Amazon RDS Provisioned IOPS storage with MySQL and Oracle database engines 6TB is the maximum size RDS volume and  30,000 IOPS capacity, you can have by default.
+
+•	VPC
+•	When you create VPC, it creates Network ACLs, Security Group and Route Tables by default. If you delete default VPC, only way to bring it back is to contact AWS. 5 VPC's are allowed in each AWS Region by default.
+•	1 subnet can be attached to one AZ as well as one Network ACL only. If you add any subnet to one ACL, it will be removed from Network ACL which was created with VPN. So to create high available system, we should have 2 publicly available subnet in 2 different AZs. It cannot be spanned to multiple AZ. By default AWS reserves 251 IPs for any new subnet. AWS reserves 5 IP addresses for their operation: 
+1) 10.0.0.0: Network address 
+2) 10.0.0.1: Reserved for VPC router 
+3) 10.0.0.2: Reserved for DNS IP address, as its base of VPC network range plus 2 
+4) 10.0.0.3: Reserved for future use
+5) 10.0.0.255: Network broadcast address, VPC does not support broadcast.
+•	You cannot attach multiple Internet gateway to VPC. 
+•	AWS provides Elastic IPs which can be associated with any EC2 instances. Deploy any EC2 instance in public subnet does not allow internet. You need to define Elastic IP or Elastic Load Balancer. Even if you create inbound and outbound rule, you cannot access public subnet until you open the Ephemeral Ports on 1024-65535.
+•	NAT Gateway and NAT Instance can be used to provide access to private subnet securely. NAT Gateway is new and auto scalable as well no need to define Security Group. For NAT instance, we need to disable Source Destination Check. NAT Gateway scale automatically up to 10 Gbps. Not associate with SG and assign public IP automatically.
+•	Through NAT instance, private subnet EC2 instance can access internet but people from internet cannot access (SSH) into these systems. For this purpose, Bastion is used.
+•	Network ACL created with VPC by default allows all inbound/outbound traffic but if you create any custom Network ACL, inbound/outbound traffic is denied. Network ACL rules are executed in order. They are not overrides. To block any IP addresses, we can use Network ACL's not Security Group. NACL are applies to all instances in subnet while SG, manually need to apply to each instances. 
+•	VPC Peering allows you to connect one VPC with another via direct network route using private IPs. VPC Peering wouldn’t work if they have matching or overlapping CIDR (IP) block and if VPCs are in different regions. Peering does not support transitive peering relation b/w A and C if A->B and B->C.
+•	AWS support Active Directory with SAML authentication where you will be authenticated with Active Directory first then given temporary credentials.
+•	VPC Flow logs help all VPC network actions logging to CloudWatch.
+
 
 
 
