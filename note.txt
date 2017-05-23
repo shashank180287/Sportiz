@@ -48,6 +48,19 @@ If you are using Amazon RDS Provisioned IOPS storage with MySQL and Oracle datab
 
 
 
+•	Application Services
+•	There are 2 types of SQS: 
+1)	Standard Queue (default) allows you to have almost unlimited transection per second.
+2)	FIFO Queue deliver message once only. It’s limited to 300 transection per second.
+<Place snip here>
+•	AWS SQS Long Polling does not return until a message arrive or Long Polling times out irrespective of regular polling, which returns immediately. There are 3 actors in SWF 1) Starters, 2) Deciders and 3) Workers.
+•	SNS can publish message to Mobile devices, SMS, emails, SQS, HTTP end points or Lambda function. Pay-as-you-go model with no up-front costs. $0.50 per 1 million requests, $0.06 per 100,000 HTTP notifications, $0.75 per 100 SMS and $2.00 per 100,000 emails.
+•	AWS SWF retain message for 1 year of workflow execution while SQS keeps it for 14 days. SWF is task oriented, ensure task is assigned only once and track all tasks and events.	
+•	Elastic Transcoder convert media file per destination systems. Pay based on the minute that you transcode and the resolution at which you transcode.
+•	API Gateway is low cost, auto scale, enabled Caching for better performance, throttle to prevent attacks and can log result to CloudWatch.
+•	There are 2 types of Computing Policies in web application security:
+1)	Same-Origin Policy, script on first web page can access data from second page only if both are on same origin.
+2)	Cross-Origin Resource Policy (CORS), Error message “Origin policy cannot be read at the remote resources?”, you need to enable CORS on API Gateway
 
 
 
