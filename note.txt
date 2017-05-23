@@ -18,6 +18,12 @@ https://portal.aws.amazon.com/billing/signup?state=hashArgs%23%2Fpaymentinformat
 
 
 AWS Course:
+Elastic Cache supports Master/Slave replication and Multi AZ which can be used to achieve cross AZ redundancy.
+Elastic cache is a good choice if your database is read heavy and not prone to frequent changes while Redshift is useful if database is feeling stress because of heavy OLAP transaction on it.
+Aurora provides uoto 5 time better performance than MySQL at a price point one tenth of a commecial databases. Aurora database starts with 10 Gb storage, scale in 10Gb increments up to 64 Tb. Compute resources can scale up to 32vCPUs and 244Gb of memory.
+Aurora keeps 2 copies of your data in each AZ with minimum of 3 AZ. So total 6 copies of data with handling loss of up to 2 copies of data without affecting write availability and loss of 3 copies of data without affecting read availability. Its self healing. 
+If you are using Amazon RDS Provisioned IOPS storage with MySQL and Oracle database engines 6TB is the maximum size RDS volume and  30,000 IOPS capacity, you can have by default.
+
 
 
 
