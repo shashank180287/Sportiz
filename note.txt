@@ -27,4 +27,11 @@ Dinner on Barcelona’s waterfront
 La Rambla
 T10 Transport Ticket
 
+The "Owner" refers to the identity and email address used to create the account AWS account.
+Once a VPC is set to Dedicated hosting, it is not possible to change the VPC or the instances to Default hosting. You must re-create the VPC.
+Route53 has a security feature that prevents internal DNS from being read by external sources. The work around is to create a EC2 hosted DNS instance that does zone transfers from the internal DNS, and allows itself to be queried by external servers.
+When considering network traffic, you need to understand the difference between storage traffic and general network traffic, and the ways to address each. The 10Gbps is a red-herring, in that the 500Mbps only occurs for short intervals, and therefore your sustained throughput is not 10Gpbs. Whereever possible, use simple solutions such as spreading the load out rather than expensive high tech solutions.
+DynamoDB allows for the storage of large text and binary objects, but there is a limit of 400 KB combined.
+By default 5 VPCs can you have per region in your AWS account.
+
 
