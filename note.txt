@@ -26,3 +26,18 @@ Casa Amatller
 Dinner on Barcelona’s waterfront
 La Rambla
 T10 Transport Ticket
+
+
+A Classic Load Balancer is ideal for simple load balancing of traffic across multiple EC2 instances, while an Application Load Balancer is ideal for microservices or container-based architectures where there is a need to route traffic to multiple services or load balance across multiple ports on the same EC2 instance. Application Load Balancer supports Host-based and Path-based Routings. Classic LB does not support IPv6 in VPC but supports load balancing for the following TCP ports:
+[EC2-VPC] 1-65535
+[EC2-Classic] 25, 80, 443, 465, 587, 1024-65535
+If you are using Amazon Virtual Private Cloud, you can configure security groups for the front-end of your Classic Load Balancers. Classic Load Balancers do not cap the number of connections that they can attempt to establish with your load balanced Amazon EC2 instances. Classic Load Balancers do not support instances launched using a paid AMI from Amazon DevPay site.
+
+====Decision diagram in http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html
+Auto Scaling currently supports the following custom termination policies:
+
+OldestInstance. Auto Scaling terminates the oldest instance in the group. This option is useful when you're upgrading the instances in the Auto Scaling group to a new EC2 instance type, so you can gradually replace instances of the old type with instances of the new type.
+NewestInstance. Auto Scaling terminates the newest instance in the group. This policy is useful when you're testing a new launch configuration but don't want to keep it in production.
+OldestLaunchConfiguration. Auto Scaling terminates instances that have the oldest launch configuration. This policy is useful when you're updating a group and phasing out the instances from a previous configuration.
+ClosestToNextInstanceHour. Auto Scaling terminates instances that are closest to the next billing hour. This policy helps you maximize the use of your instances and manage costs.
+Default. Auto Scaling uses its default termination policy. This policy is useful when you have more than one scaling policy associated with the group.
