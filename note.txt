@@ -27,4 +27,11 @@ Dinner on Barcelona’s waterfront
 La Rambla
 T10 Transport Ticket
 
-
+Roles are used to acquire specific permissions by AWS resources like EC2 or non AWS IAM users(using SAML) as policy can not be attached directly to them.
+Your "default" VPC already has an IGW attached. Only 1 IGW can be attached to VPC at a time and IGW can not be detach from VPC is it has some active resources.
+Placement Group throws "insufficient capacity error" if new instances are added later or PG is stopped and started again. To resolve this error, stop and start all member instances.
+Placement Group cannot be merged but are connected with each other. PC name should be unique for your AWS account and instances must have 10gigabit network speed.
+Volumes created from an EBS snapshot must be initialized. Initializing occurs the first time a "storage block on the volume is read" - and the performance impact can be impacted by up to 50%. You can avoid this impact in production environments by manually reading all the blocks.
+IOPS are measured in size of 256KB "chunks".
+S3 generates events for RRSObjectLost, ObjectCreated (Put, Post, Copy, CompleteMultipartUpload) and can be sent to SNS, SQS and Lambda
+When you suspend object versioning, all existing objects retain their current and past versions, and no new versions are created when updated object are uploaded.
