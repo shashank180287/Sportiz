@@ -18,3 +18,12 @@ https://portal.aws.amazon.com/billing/signup?state=hashArgs%23%2Fpaymentinformat
 
 Avis A293500 
 Budget T184700 
+
+
+1) IAM role with cloudwatch log full permission
+
+2) Create maven project and write handler method
+3) Create Lambda with hello-world blue-print and class-name::handler-method
+
+4) Create IAM User with AmazonAPIGatewayInvokeFullAccess and AWSLambdaFullAccess
+5) Create API gateway with Resources and Post method and deploy in stage and call from Postman
