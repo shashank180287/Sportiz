@@ -27,3 +27,7 @@ Budget T184700
 
 4) Create IAM User with AmazonAPIGatewayInvokeFullAccess and AWSLambdaFullAccess
 5) Create API gateway with Resources and Post method and deploy in stage and call from Postman
+
+ssn
+dl
+500670884
